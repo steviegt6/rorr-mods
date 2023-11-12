@@ -87,7 +87,7 @@ EXPORT GM_DOUBLE win_vsc_to_vk(GM_DOUBLE uCode)
 	return (GM_DOUBLE)MapVirtualKeyExA((UINT)uCode, MAPVK_VSC_TO_VK, hkl);
 }
 
-// Parameter is a GM_STRING but is really just a pointer.
+// Parameter is a handle masquerading as a char*.
 EXPORT GM_DOUBLE win_window_set_popup(GM_STRING windowHandle, GM_DOUBLE togglePopup)
 {
 	GM_DOUBLE success = GM_FALSE;
