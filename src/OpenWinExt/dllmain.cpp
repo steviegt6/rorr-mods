@@ -51,13 +51,10 @@ EXPORT GM_DOUBLE win_display_get_y(GM_DOUBLE windowIndex)
 
 EXPORT GM_DOUBLE win_display_update_cache(void)
 {
-	if (window_display_count > 0)
+	for (int i = 0; i < window_display_count; i++)
 	{
-		for (int i = 0; i < window_display_count; i++)
-		{
-			free(displays[i]);
-			displays[i] = {};
-		}
+		free(displays[i]);
+		displays[i] = {};
 	}
 
 	// Set cbSize before handle_enum_display_monitors since it uses this as
@@ -94,26 +91,22 @@ EXPORT GM_DOUBLE win_vsc_to_vk(GM_DOUBLE uCode)
 EXPORT GM_DOUBLE win_window_set_popup(GM_STRING windowHandle, GM_DOUBLE togglePopup)
 {
 	GM_DOUBLE success = GM_FALSE;
-
-	LONG_PTR windowStyles;
-	unsigned long long stylesToSet;
+	LONG_PTR styles;
 	
 	if (windowHandle)
 	{
+		styles = GetWindowLongPtrW((HWND)windowHandle, GWL_STYLE);
+
 		if (!togglePopup)
 		{
-			windowStyles = GetWindowLongPtrW((HWND)windowHandle, GWL_STYLE);
-			// Clear final bit (WS_POPUP) of lower 4 bytes (GWL_STYLE), disable popup.
-			stylesToSet = (unsigned long long)((unsigned int)windowStyles & 0x7fffffff);
+			styles &= ~WS_POPUP;
 		}
 		else
 		{
-			stylesToSet = GetWindowLongPtrW((HWND)windowHandle, GWL_STYLE);
-			// Enable popup.
-			stylesToSet = stylesToSet | WS_POPUP;
+			styles |= WS_POPUP;
 		}
 
-		SetWindowLongPtrW((HWND)windowHandle, GWL_STYLE, stylesToSet);
+		SetWindowLongPtrW((HWND)windowHandle, GWL_STYLE, styles);
 		success = GM_TRUE;
 	}
 
