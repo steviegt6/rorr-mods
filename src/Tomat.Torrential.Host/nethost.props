@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RuntimeNativeDir Condition="'$(Platform)' == 'Win32'">$(NetCoreTargetingPackRoot)/Microsoft.NETCore.App.Host.win-x86/$(BundledNETCoreAppPackageVersion)/runtimes/win-x86/native</RuntimeNativeDir>
+        <RuntimeNativeDir Condition="'$(Platform)' == 'x64'">$(NetCoreTargetingPackRoot)/Microsoft.NETCore.App.Host.win-x64/$(BundledNETCoreAppPackageVersion)/runtimes/win-x64/native</RuntimeNativeDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="$(RuntimeNativeDir)/nethost.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+</Project>
