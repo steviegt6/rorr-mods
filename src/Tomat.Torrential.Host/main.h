@@ -1,12 +1,13 @@
 ﻿#pragma once
-#include <Windows.h>
+
+#include <windows.h>
 
 static constexpr const char* const host_version = "1.0.0";
 
 // ReSharper disable once CppInconsistentNaming
 BOOL APIENTRY DllMain(HMODULE instance, DWORD reason, LPVOID);
-
 DWORD thread_main(LPVOID);
+bool is_suspended();
 
 // Stub common proxy targets:
 

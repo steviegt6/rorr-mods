@@ -36,10 +36,32 @@ DWORD thread_main(LPVOID)
     }
     else
     {
-        log_init(gray, "Steam API initialization was ignored or was successful.");
+        log_init(gray, "Steam API initialization was ignored or was successful.\n");
+    }
+
+    // Guess who got *lazy*!!!! I had actual code for this, but it's easier to
+    // just check for a command line flag and let the managed side of the loader
+    // handle everything else...
+    if (is_suspended())
+    {
+        log_init(gray, "This process was started in a suspended state.\n");
+    }
+    else
+    {
+        log_init(yellow, "This process was not started in a suspended state and will be restarted by the managed host!\n");
     }
 
     return 0;
+}
+
+bool is_suspended()
+{
+    // My old code for this is broken, so let's use this hack.
+    const auto command_line = GetCommandLineA();
+    if (strstr(command_line, "-suspended"))
+        return true;
+
+    return false;
 }
 
 // Stub common proxy targets:
