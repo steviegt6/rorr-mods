@@ -29,15 +29,6 @@ void log_init(const console_color color, const char* format, ...)
 DWORD thread_main(LPVOID)
 {
     init_console();
-    const bool steam_workaround = init_steam();
-    if (steam_workaround)
-    {
-        log_init(yellow, "Steam API initialization failed, likely due to the lack of a steam_appid.txt file; a workaround will be attempted.\n");
-    }
-    else
-    {
-        log_init(gray, "Steam API initialization was ignored or was successful.\n");
-    }
 
     // Guess who got *lazy*!!!! I had actual code for this, but it's easier to
     // just check for a command line flag and let the managed side of the loader
@@ -49,6 +40,16 @@ DWORD thread_main(LPVOID)
     else
     {
         log_init(yellow, "This process was not started in a suspended state and will be restarted by the managed host!\n");
+    }
+    
+    const bool steam_workaround = init_steam();
+    if (steam_workaround)
+    {
+        log_init(yellow, "Steam API initialization failed, likely due to the lack of a steam_appid.txt file; a workaround will be attempted.\n");
+    }
+    else
+    {
+        log_init(gray, "Steam API initialization was ignored or was successful.\n");
     }
 
     return 0;
