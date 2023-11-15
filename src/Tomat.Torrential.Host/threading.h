@@ -25,7 +25,6 @@ typedef struct _system_process_information
     HANDLE InheritedFromProcessId;
 } system_process_information, *psystem_process_information;
 
-typedef void (*process_iterator_func)(psystem_process_information proc_info, void* parameter);
+typedef void (*thread_iterator_func)(HANDLE thread, void* parameter);
 
-void iterate_processes(process_iterator_func func, void* parameter);
-bool get_thread_start_address(HANDLE thread, unsigned long& address);
+void iterate_threads(DWORD proc_id, thread_iterator_func func, void* parameter);

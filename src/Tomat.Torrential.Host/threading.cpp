@@ -3,51 +3,37 @@
 #include <cstdint>
 #include <tlhelp32.h>
 
-void iterate_processes(const process_iterator_func func, void* parameter)
+void iterate_threads(const DWORD proc_id, const thread_iterator_func func, void* parameter)
 {
-    const HMODULE ntdll = GetModuleHandleA("ntdll.dll");
-    if (!ntdll)
+    const HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+
+    if (snapshot == INVALID_HANDLE_VALUE)
     {
         return;
     }
 
-    const auto nt_query_system_information = reinterpret_cast<NtQuerySystemInformation_t>(GetProcAddress(ntdll, "NtQuerySystemInformation")); // NOLINT(clang-diagnostic-cast-function-type-strict)
-    if (!nt_query_system_information)
-    {
-        return;
-    }
+    THREADENTRY32 te32;
+    te32.dwSize = sizeof(THREADENTRY32);
 
-    ULONG buffer_size = 0;
-    NTSTATUS status = nt_query_system_information(SystemProcessInformation, nullptr, 0, &buffer_size);
-    if (status != 0xC0000004 /*STATUS_INFO_LENGTH_MISMATCH*/) // NOLINT(clang-diagnostic-sign-compare)
+    if (Thread32First(snapshot, &te32))
     {
-        return;
-    }
-
-    const PVOID buffer = malloc(buffer_size);
-    if (!buffer)
-    {
-        return;
-    }
-
-    status = nt_query_system_information(SystemProcessInformation, buffer, buffer_size, nullptr);
-    if (!NT_SUCCESS(status))
-    {
-        free(buffer);
-        return;
-    }
-
-    auto process_entry = static_cast<psystem_process_information>(buffer);
-    while (process_entry)
-    {
-        if (process_entry->ProcessId == reinterpret_cast<HANDLE>(GetCurrentProcessId())) // NOLINT(performance-no-int-to-ptr)
+        do
         {
-            for (ULONG i = 0; i < process_entry->NumberOfThreads; i++)
+            if (te32.th32OwnerProcessID == proc_id)
             {
-                func(process_entry, parameter);
+                const HANDLE thread = OpenThread(THREAD_ALL_ACCESS, false, te32.th32ThreadID);
+
+                if (thread == INVALID_HANDLE_VALUE)
+                {
+                    continue;
+                }
+
+                func(thread, parameter);
+                CloseHandle(thread);
             }
         }
+        while (Thread32Next(snapshot, &te32));
     }
 
-    free(buffer);
+    CloseHandle(snapshot);
 }
