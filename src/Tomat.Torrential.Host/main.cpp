@@ -48,7 +48,7 @@ DWORD thread_main(LPVOID)
     const bool steam_workaround = init_steam();
     if (steam_workaround)
     {
-        log_init(yellow, "Steam API initialization failed, likely due to the lack of a steam_appid.txt file; a workaround will be attempted.\n");
+        log_init(yellow, "Steam API initialization failed, likely due to the lack of a steam_appid.txt file.\n");
     }
     else
     {
