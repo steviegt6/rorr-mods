@@ -8,6 +8,7 @@ static constexpr const char* const host_version = "1.0.0";
 BOOL APIENTRY DllMain(HMODULE instance, DWORD reason, LPVOID);
 DWORD thread_main(LPVOID);
 bool is_suspended();
+void suspend_entrypoint_thread();
 
 // Stub common proxy targets:
 
