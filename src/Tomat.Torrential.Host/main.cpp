@@ -91,7 +91,7 @@ void suspend_entrypoint_thread()
 
         for (int i = 0; i < proc_info->NumberOfThreads; i++) // NOLINT(clang-diagnostic-sign-compare)
         {
-            const HANDLE thread = OpenThread(THREAD_ALL_ACCESS, false, reinterpret_cast<uintptr_t>(proc_info->Threads[i].ClientId.UniqueThread)); // NOLINT(performance-no-int-to-ptr, clang-diagnostic-shorten-64-to-32)
+            const HANDLE thread = OpenThread(THREAD_ALL_ACCESS, false, reinterpret_cast<uintptr_t>(proc_info->Reserved[i].ClientId.UniqueThread)); // NOLINT(performance-no-int-to-ptr, clang-diagnostic-shorten-64-to-32)
 
             /*unsigned long start_addr = 0;
 
