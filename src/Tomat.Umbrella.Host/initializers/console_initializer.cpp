@@ -33,7 +33,7 @@ void init_console()
     std::string configuration = "RELEASE";
 #endif
 
-    const std::string console_title = std::string("Tomat.Torrential.Host") + " - " + os + " " + arch + " (" + configuration + ")";
+    const std::string console_title = std::string("Tomat.Umbrella.Host") + " - " + os + " " + arch + " (" + configuration + ")";
     SetConsoleTitleA(console_title.c_str());
 
     // Disable selection mode.
@@ -43,8 +43,8 @@ void init_console()
     GetConsoleMode(input, &mode);
     SetConsoleMode(input, ENABLE_EXTENDED_FLAGS | (mode & ~ENABLE_QUICK_EDIT_MODE));
 
-    msg(light_blue, "Tomat.Torrential.Host v%s by tomat (steviegt6)\n", host_version);
-    msg(/* */ gray, "    Torrential API and associated projects are and always will be free software.\n");
+    msg(light_blue, "Tomat.Umbrella.Host v%s by tomat (steviegt6)\n", host_version);
+    msg(/* */ gray, "    Umbrella API and associated projects are and always will be free software.\n");
     msg(/* */ gray, "    \"Free\" as in \"free beer\" *and* \"freedom.\"\n");
     msg(/* */ gray, "    If you appreciate what I do, consider donating (it supports me and promotes the longevity of this project):\n");
     msg(light_gray, "        - https://patreon.com/tomatophile\n");
