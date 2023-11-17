@@ -9,3 +9,7 @@ There are several projects here, but most predominately the *Umbrella API* and s
 ## Umbrella API
 
 The *Umbrella API* and associated tools introduce a C# mod loader and modding API to GameMaker games, specifically tailored for RoRR.
+
+## OpenWinExt
+
+A completely open-sourced and reimplemented version of the auxiliary RoRRWinExt native library used in RoRR.
