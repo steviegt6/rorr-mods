@@ -1,5 +1,8 @@
 ﻿#include "main.h"
 
+#include <iostream>
+#include <string>
+
 #include "logging.h"
 #include "threading.h"
 #include "initializers/console_initializer.h"
@@ -27,8 +30,10 @@ void log_init(const console_color color, const char* format, ...)
     va_end(args);
 }
 
-DWORD thread_main(LPVOID)
+DWORD thread_main(LPVOID p)
 {
+    const HMODULE instance = static_cast<HMODULE>(p);
+
     init_console();
 
     // Guess who got *lazy*!!!! I had actual code for this, but it's easier to
@@ -54,6 +59,30 @@ DWORD thread_main(LPVOID)
     {
         log_init(gray, "Steam API initialization was ignored or was successful.\n");
     }
+
+    TCHAR cwd_buf[MAX_PATH];
+    GetModuleFileName(instance, cwd_buf, MAX_PATH);
+    const std::wstring dll_path(cwd_buf);
+    std::wstring cwd(cwd_buf);
+    const std::wstring::size_type separator = cwd.find_last_of(L"\\/");
+    cwd = cwd.substr(0, separator);
+    std::wstring umbrella_dir = cwd + L"\\.umbrella";
+
+    size_t required_size;
+    _wgetenv_s(&required_size, nullptr, 0, L"UMBRELLA_DIRECTORY");
+    if (required_size > 0)
+    {
+        _wgetenv_s(&required_size, cwd_buf, MAX_PATH, L"UMBRELLA_DIRECTORY");
+        umbrella_dir = std::wstring(cwd_buf);
+    }
+
+    log_init(gray, "Using working directory: ");
+    std::wcout << cwd << std::endl;
+    log_init(gray, "Using DLL path: ");
+    std::wcout << dll_path << std::endl;
+    log_init(gray, "Using Umbrella directory: ");
+    std::wcout << umbrella_dir << std::endl;
+    CreateDirectory(umbrella_dir.c_str(), nullptr);
 
     return 0;
 }
