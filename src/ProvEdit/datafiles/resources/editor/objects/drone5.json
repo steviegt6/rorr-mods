@@ -1,0 +1,6 @@
+{
+    "interface" : "Laser Drone",
+    "name" : "Drone5Item",
+    "namespace" : "Vanilla",
+    "sprite" : "drone5.png"
+}

@@ -1,0 +1,37 @@
+{
+    "interface" : "Small Chest",
+    "name" : "Chest1",
+    "namespace" : "Vanilla",
+    "sprite" : "chest1.png",
+    "variables" : [
+        {
+            "name" : "Chest Cost",
+            "variableName" : "cost",
+            "type" : "int",
+            "default" : 25
+        },
+        {
+            "name" : "test checkbox 1",
+            "variableName" : "testbool1",
+            "type" : "bool",
+            "default" : false
+        },
+        {
+            "name" : "test checkbox 2",
+            "variableName" : "testbool2",
+            "type" : "bool",
+            "default" : true
+        },
+        {
+            "name" : "test text 1",
+            "variableName" : "teststring1",
+            "type" : "string"
+        },
+        {
+            "name" : "test text 2",
+            "variableName" : "teststring2",
+            "type" : "string",
+            "range" : ["player", "neutral", "enemy"]
+        }
+    ]
+}

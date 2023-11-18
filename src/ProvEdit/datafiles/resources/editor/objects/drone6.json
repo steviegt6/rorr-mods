@@ -1,0 +1,6 @@
+{
+    "interface" : "Flame Drone",
+    "name" : "Drone6Item",
+    "namespace" : "Vanilla",
+    "sprite" : "drone6.png"
+}

@@ -1,0 +1,6 @@
+{
+    "interface" : "Imp Shrine",
+    "name" : "Shrine3",
+    "namespace" : "Vanilla",
+    "sprite" : "shrine3.png"
+}

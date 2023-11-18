@@ -1,0 +1,9 @@
+{
+    "interface" : "Sky Meadow",
+    "group" : "vanilla",
+    "image" : "Sky Meadow.png",
+    "name" : "Purple32",
+    "namespace" : "Vanilla",
+    "brushes" : [
+    ]
+}

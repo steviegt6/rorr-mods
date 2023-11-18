@@ -1,0 +1,5 @@
+draw_set_colour(colour)
+draw_set_halign(halign)
+draw_set_valign(valign)
+draw_set_font(font)
+draw_text(x, y, text)

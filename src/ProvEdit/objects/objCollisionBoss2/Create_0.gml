@@ -1,0 +1,1 @@
+type = Collision.bossSpawn2

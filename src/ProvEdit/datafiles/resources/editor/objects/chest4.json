@@ -1,0 +1,6 @@
+{
+    "interface" : "Item Roulette",
+    "name" : "Chest4",
+    "namespace" : "Vanilla",
+    "sprite" : "chest4.png"
+}

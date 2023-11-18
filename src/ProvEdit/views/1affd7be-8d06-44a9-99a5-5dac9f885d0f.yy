@@ -1,0 +1,30 @@
+{
+    "id": "1affd7be-8d06-44a9-99a5-5dac9f885d0f",
+    "modelName": "GMFolder",
+    "mvc": "1.1",
+    "name": "1affd7be-8d06-44a9-99a5-5dac9f885d0f",
+    "children": [
+        "fb6e0b5f-86db-479f-840f-17745d399205",
+        "e9a3bc77-4f19-4751-bce1-57a12d08981c",
+        "289c8757-db44-4070-8ec3-b0f767f9547e",
+        "a2207e57-cf47-49af-9f7a-6c3624e7c7f5",
+        "82d9459b-622d-4509-9e9b-4ecaab36329c",
+        "228ca42a-2312-47cd-8535-85bf4d834007",
+        "d527342a-4dae-41c4-ad46-69bd308fba5f",
+        "8f5b8d1b-6602-46ea-ab2b-8cbe0b8d8807",
+        "a15c4a15-2e0a-4eb3-898d-da79c471fd84",
+        "636871c8-d819-4f69-bc80-40a48538bbdf",
+        "9c0e2c51-fe9c-4ea1-9007-06a839820f91",
+        "61398392-e38b-498a-9098-3e93cd0ba1ac",
+        "ac27bb03-8843-4665-b107-eb9277046c36",
+        "b57eefdf-9205-4acf-bd18-118c050069ec",
+        "740bddf5-ba59-4760-9a53-79018bc3dc19",
+        "04209464-e6fa-4e0f-93fd-b22aadbfaf0c",
+        "e9bed7b8-8927-468a-980f-6445eb4988e2",
+        "a03e84c9-8c5d-43b9-bb39-cde65cab1a51"
+    ],
+    "filterType": "GMIncludedFile",
+    "folderName": "tilesets",
+    "isDefaultView": false,
+    "localisedFolderName": ""
+}

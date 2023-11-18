@@ -1,0 +1,14 @@
+{
+    "interface" : "Small Barrel",
+    "name" : "Barrel1",
+    "namespace" : "Vanilla",
+    "sprite" : "barrel1.png",
+    "variables" : [
+        {
+            "name" : "Amount of 'blobs' (one blob = 1 gold, 1 exp)",
+            "variableName" : "value",
+            "type" : "int",
+            "default" : 7
+        }
+    ]
+}

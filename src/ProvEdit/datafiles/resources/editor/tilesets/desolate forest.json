@@ -1,0 +1,9 @@
+{
+    "interface" : "Desolate Forest",
+    "group" : "vanilla",
+    "image" : "Desolate Forest.png",
+    "name" : "Tile16Dead",
+    "namespace" : "Vanilla",
+    "brushes" : [
+    ]
+}

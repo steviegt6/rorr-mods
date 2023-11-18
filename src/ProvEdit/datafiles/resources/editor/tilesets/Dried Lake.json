@@ -1,0 +1,9 @@
+{
+    "interface" : "Dried Lake",
+    "group" : "vanilla",
+    "image" : "Dried Lake.png",
+    "name" : "Tile16Sand",
+    "namespace" : "Vanilla",
+    "brushes" : [
+    ]
+}

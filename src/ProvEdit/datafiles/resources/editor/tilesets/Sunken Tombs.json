@@ -1,0 +1,10 @@
+{
+    "interface" : "Sunken Tombs",
+    "group" : "vanilla",
+    "image" : "Sunken Tombs.png",
+    "name" : "Tile16Water",
+    "namespace" : "Vanilla",
+	"grid": true,
+    "brushes" : [
+    ]
+}

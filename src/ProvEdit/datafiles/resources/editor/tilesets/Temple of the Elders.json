@@ -1,0 +1,27 @@
+{
+    "interface" : "Temple of the Elders",
+	"group" : "Vanilla",
+    "image" : "Temple of the Elders.png",
+    "name" : "Tile16Temple",
+    "namespace" : "Vanilla",
+	"grid": true,
+    "brushes" : [
+        {
+            "name" : "Temple Ruin",
+            "middle" : [[1, 1]],
+            "left" : [[0, 1], [0, 2]],
+            "right" : [[4, 1], [4, 2]],
+            "top" : [[1, 0], [2, 0], [3, 0]],
+            "bottom" : [[1, 3], [2, 3], [3, 3]],
+            "topLeft" : [[0, 0], [2, 1]],
+            "topRight" : [[4, 0], [3, 1]],
+            "bottomLeft" : [[0, 3], [2, 2]],
+            "bottomRight" : [[4, 3], [3, 2]],
+            "cornerTopLeft" : [[9, 1]],
+            "cornerTopRight" : [[8, 1]],
+            "cornerBottomLeft" : [[9, 0]],
+            "cornerBottomRight" : [[8, 0]]
+        }
+    ]
+}
+

@@ -1,0 +1,33 @@
+{
+    "id": "a63b0a14-e534-4b6b-8d9f-f74fee7d07bf",
+    "modelName": "GMFolder",
+    "mvc": "1.1",
+    "name": "a63b0a14-e534-4b6b-8d9f-f74fee7d07bf",
+    "children": [
+        "f825572d-6037-443f-83f8-fc056d5db308",
+        "8b770c2f-f4fe-44eb-b41b-f0d93eb2b332",
+        "ba1760e3-5d08-42b0-84db-fadb4b73352e",
+        "bc2d589c-3cc6-46c4-9077-270db1d01a3b",
+        "6752eecc-47b8-401c-be35-7c0d96078f32",
+        "8fa21f65-3709-41db-8727-d8a737350e21",
+        "bb474d83-ddfe-4e93-b698-38d9af0dafd3",
+        "40cf2aa8-b837-40a4-b3fd-2393e84bfdc3",
+        "88af1a74-188b-460c-9379-8147784076cb",
+        "0027a26e-f0bf-4cff-964d-4137584d68ee",
+        "fa1d4b47-d5b8-4ccd-8034-0cf357e6ea75",
+        "4e25853e-03ae-43fd-91ed-60ceb14e6022",
+        "7c2b217f-c1a7-4b11-9689-c00682ab04f4",
+        "b7bc7a7b-8ee6-4bc2-9d7e-d06ef9128496",
+        "d062fcc0-39d1-45b4-a8bc-1c70e64c6a31",
+        "e16d4dc3-cb9e-4bb5-a298-c3845049b50e",
+        "e71c6ebe-bb78-4911-944b-0d6b0909dc59",
+        "47b42a2b-3af9-4d1d-a123-36d57397e855",
+        "f34604b7-c012-4d2f-8f1c-95b85bd781e8",
+        "e88a06d2-7552-4cae-aec5-1577a768eb0f",
+        "3b5ff78f-c501-4990-8c1f-272ac5de239d"
+    ],
+    "filterType": "GMScript",
+    "folderName": "Formatting Engine",
+    "isDefaultView": false,
+    "localisedFolderName": ""
+}

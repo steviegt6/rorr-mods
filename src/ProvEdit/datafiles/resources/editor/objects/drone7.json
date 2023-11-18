@@ -1,0 +1,6 @@
+{
+    "interface" : "Medical Drone",
+    "name" : "Drone7Item",
+    "namespace" : "Vanilla",
+    "sprite" : "drone7.png"
+}

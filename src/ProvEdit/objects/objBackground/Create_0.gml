@@ -1,0 +1,11 @@
+background = 0
+my_layer = -1
+my_layer_bg = -1
+tilex = true
+tiley = true
+parallaxx = 0
+parallaxy = 0
+offsetx = 0
+offsety = 0
+percentx = 0
+percenty = 0

@@ -1,0 +1,6 @@
+{
+    "interface" : "Item Shop",
+    "name" : "Chest3",
+    "namespace" : "Vanilla",
+    "sprite" : "chest3.png"
+}

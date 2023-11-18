@@ -1,0 +1,14 @@
+{
+    "interface" : "Large Barrel",
+    "name" : "Barrel2",
+    "namespace" : "Vanilla",
+    "sprite" : "barrel2.png",
+    "variables" : [
+        {
+            "name" : "Amount of 'blobs' (one blob = 3 gold, 5 exp)",
+            "variableName" : "value",
+            "type" : "int",
+            "defaultValue" : 3
+        }
+    ]
+}

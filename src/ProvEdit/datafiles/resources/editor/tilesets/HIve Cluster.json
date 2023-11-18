@@ -1,0 +1,10 @@
+{
+    "interface" : "Hive Cluster",
+    "group" : "vanilla",
+    "image" : "Hive Cluster.png",
+    "name" : "Tile16Acid",
+    "namespace" : "Vanilla",
+	"grid": true,
+    "brushes" : [
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "interface" : "Gun Chest",
+    "name" : "Gunchest",
+    "namespace" : "Vanilla",
+    "sprite" : "gunchest.png"
+}

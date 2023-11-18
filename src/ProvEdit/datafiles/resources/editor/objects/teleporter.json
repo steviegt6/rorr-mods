@@ -1,0 +1,6 @@
+{
+    "interface" : "Exit Teleporter",
+    "name" : "Teleporter",
+    "namespace" : "Vanilla",
+    "sprite" : "teleporter.png"
+}

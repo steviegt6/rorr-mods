@@ -1,0 +1,6 @@
+{
+    "interface" : "Golem Shrine",
+    "name" : "Shrine1",
+    "namespace" : "Vanilla",
+    "sprite" : "shrine1.png"
+}

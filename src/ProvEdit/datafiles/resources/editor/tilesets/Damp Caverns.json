@@ -1,0 +1,9 @@
+{
+    "interface" : "Damp Caverns",
+    "group" : "vanilla",
+    "image" : "Damp Caverns.png",
+    "name" : "Tile16Mush",
+    "namespace" : "Vanilla",
+    "brushes" : [
+    ]
+}

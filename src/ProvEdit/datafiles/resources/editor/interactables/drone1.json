@@ -1,0 +1,5 @@
+{
+    "interface" : "Drone",
+    "name" : "Drone1",
+    "namespace" : "Vanilla"
+}

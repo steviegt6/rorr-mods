@@ -1,0 +1,9 @@
+{
+    "interface" : "Ancient Valley",
+    "group" : "vanilla",
+    "image" : "Ancient Valley.png",
+    "name" : "Tile16Snow",
+    "namespace" : "Vanilla",
+    "brushes" : [
+    ]
+}

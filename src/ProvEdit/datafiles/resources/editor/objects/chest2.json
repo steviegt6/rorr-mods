@@ -1,0 +1,6 @@
+{
+    "interface" : "Large Chest",
+    "name" : "Chest2",
+    "namespace" : "Vanilla",
+    "sprite" : "chest2.png"
+}

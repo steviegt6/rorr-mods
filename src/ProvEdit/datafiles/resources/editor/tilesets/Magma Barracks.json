@@ -1,0 +1,9 @@
+{
+    "interface" : "Magma Barracks",
+    "group" : "vanilla",
+    "image" : "Magma Barracks.png",
+    "name" : "Tile16Cave",
+    "namespace" : "Vanilla",
+    "brushes" : [
+    ]
+}

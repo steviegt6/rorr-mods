@@ -1,0 +1,6 @@
+{
+    "interface" : "Attack Drone",
+    "name" : "Drone2Item",
+    "namespace" : "Vanilla",
+    "sprite" : "drone2.png"
+}

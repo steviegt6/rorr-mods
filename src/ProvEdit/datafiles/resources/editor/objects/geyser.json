@@ -1,0 +1,6 @@
+{
+    "interface" : "Geyser",
+    "name" : "Geyser",
+    "namespace" : "Vanilla",
+    "sprite" : "geyser.png"
+}

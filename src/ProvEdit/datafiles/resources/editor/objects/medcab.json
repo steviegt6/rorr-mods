@@ -1,0 +1,7 @@
+{
+    "interface" : "Medical Cabinet",
+    "name" : "Medcab",
+    "namespace" : "Vanilla",
+    "sprite" : "medcab.png",
+    "yorigin" : 1
+}
