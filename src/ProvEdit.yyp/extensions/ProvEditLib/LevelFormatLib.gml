@@ -74,8 +74,7 @@
     
     // Map of known level format versions
     var _m = ds_map_create()
-	_m[? "0.1.0"] = true
-	_m[? "0.1.1"] = true
+	_m[? "0.2.0"] = true
     global.__ProvEdit_level_format_known = _m
     
 #define ProvEdit_semver_get_level_features
