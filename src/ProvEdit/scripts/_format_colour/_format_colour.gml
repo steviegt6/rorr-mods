@@ -1,1 +1,0 @@
-draw_set_colour(argument[1])

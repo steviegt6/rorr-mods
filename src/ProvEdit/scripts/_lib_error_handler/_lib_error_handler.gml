@@ -1,1 +1,0 @@
-scr_alert(argument0)
