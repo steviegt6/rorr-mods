@@ -1,7 +1,7 @@
 
 #define _____provedit_levelformatlib_init
     #macro PROVEDIT_FORMAT_STRING "rorlvl"
-    #macro PROVEDIT_FORMAT_VERSION "0.1.1"
+    #macro PROVEDIT_FORMAT_VERSION "0.2.0"
     
     // Level structs
     enum PROVEDIT_LEVEL_FILE {
