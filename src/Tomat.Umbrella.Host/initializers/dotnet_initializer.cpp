@@ -4,9 +4,9 @@
 
 #include "../logging.h"
 
-void log(const console_color color, const char* format, ...)
+void log_dotnet(const console_color color, const char* format, ...)
 {
-    msg(color, "[Init::Steam] ");
+    msg(color, "[Init::.NET] ");
 
     va_list args;
     va_start(args, format);

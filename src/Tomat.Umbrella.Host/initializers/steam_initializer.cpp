@@ -5,7 +5,7 @@
 
 #include "../logging.h"
 
-void log(const console_color color, const char* format, ...)
+void log_steam(const console_color color, const char* format, ...)
 {
     msg(color, "[Init::Steam] ");
 
@@ -19,12 +19,12 @@ void log(const console_color color, const char* format, ...)
 
 bool init_steam()
 {
-    log(gray, "Attempting to load steam_api...\n");
+    log_steam(gray, "Attempting to load steam_api...\n");
 
     HMODULE steam_api = LoadLibraryA("steam_api.dll");
     if (steam_api)
     {
-        log(gray, "Loaded Steam API: steam_api.dll\n");
+        log_steam(gray, "Loaded Steam API: steam_api.dll\n");
     }
     else
     {
@@ -32,11 +32,11 @@ bool init_steam()
 
         if (steam_api)
         {
-            log(gray, "Loaded Steam API: steam_api64.dll\n");
+            log_steam(gray, "Loaded Steam API: steam_api64.dll\n");
         }
         else
         {
-            log(gray, "No Steam API binaries found (or they failed to load), assuming non-Steam game.\n");
+            log_steam(gray, "No Steam API binaries found (or they failed to load), assuming non-Steam game.\n");
             return false;
         }
     }
@@ -51,19 +51,19 @@ bool init_steam()
 
     if (!init || !is_steam_running)
     {
-        log(yellow, "Failed to find Steam API functions.\n");
+        log_steam(yellow, "Failed to find Steam API functions.\n");
         return false;
     }
 
     if (!init())
     {
-        log(yellow, "Steam API failed to initialize, a resolution will be attempted later...\n");
+        log_steam(yellow, "Steam API failed to initialize, a resolution will be attempted later...\n");
         return true;
     }
 
     if (!is_steam_running())
     {
-        log(yellow, "Game is not running through Steam, a resolution will be attempted later...\n");
+        log_steam(yellow, "Game is not running through Steam, a resolution will be attempted later...\n");
         return true;
     }
 
