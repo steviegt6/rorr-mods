@@ -18,6 +18,6 @@ void log(const console_color color, const char* format, ...)
 
 bool init_dotnet(std::wstring& cwd, std::wstring& managed_host_dir, native_entry* entry)
 {
-    
+    return false;
 }
 
