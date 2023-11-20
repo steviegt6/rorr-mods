@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenWinExt", "OpenWinExt\OpenWinExt.vcxproj", "{4FE328D9-E1AB-4490-8C3F-F7AB8EEFD732}"
 EndProject
-Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Risk of Rain Returns", "..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain Returns\Risk of Rain Returns.exe", "{B1A022B8-D93C-422F-821C-EB1E202B9E66}"
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Risk of Rain Returns", "C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain Returns\Risk of Rain Returns.exe", "{B1A022B8-D93C-422F-821C-EB1E202B9E66}"
 	ProjectSection(DebuggerProjectSystem) = preProject
 		PortSupplier = 00000000-0000-0000-0000-000000000000
 		Executable = C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain Returns\Risk of Rain Returns.exe
