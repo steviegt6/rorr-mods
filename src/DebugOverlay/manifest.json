@@ -3,5 +3,5 @@
     "version_number": "1.0.1",
     "website_url": "https://github.com/steviegt6/rorr-mods",
     "description": "Enables the GameMaker debug overlay.",
-    "dependencies": [ ]
+    "dependencies": [ "Tomat-AuriePack-1.0.1" ]
 }
