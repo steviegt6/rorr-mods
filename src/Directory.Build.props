@@ -1,0 +1,8 @@
+<Project>
+
+    <PropertyGroup>
+        <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+        <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    </PropertyGroup>
+
+</Project>
