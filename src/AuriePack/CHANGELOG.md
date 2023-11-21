@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+Fixed icon
+
 ## 1.0.0
 
 ```
