@@ -1,0 +1,7 @@
+﻿MessageBox
+AllocConsole
+SetConsoleTitle
+GetStdHandle
+GetConsoleMode
+SetConsoleMode
+CreateFile
