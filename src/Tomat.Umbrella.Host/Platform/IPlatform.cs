@@ -2,7 +2,7 @@
 
 namespace Tomat.Umbrella.Host.Platform;
 
-public interface IPlatform {
+internal interface IPlatform {
     void ShowMessageBox(string title, string message);
 
     bool InitializeConsole();

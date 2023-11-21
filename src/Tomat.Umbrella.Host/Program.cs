@@ -1,7 +1,8 @@
-﻿using System;
+﻿using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Tomat.Umbrella.Host.Platform;
+using Tomat.Umbrella.Logging;
 
 namespace Tomat.Umbrella.Host;
 
@@ -14,12 +15,29 @@ internal static unsafe class Program {
 
         var platform = IPlatform.MakePlatform();
 
+        var latestLogName = "latest.log";
+        var counter = 0;
+
+        while (File.Exists(latestLogName)) {
+            try {
+                File.Delete(latestLogName);
+            }
+            catch (IOException) {
+                latestLogName = $"latest.{++counter}.log";
+            }
+        }
+
+        latestLogName = Path.GetFullPath(latestLogName);
+
+        var writer = LogWriter.FromMany(new ILogWriter[] { new ConsoleLogWriter(), new FileLogWriter(latestLogName) });
+        var logger = new Logger("Tomat.Umbrella.Host", writer);
+
         if (!platform.InitializeConsole()) {
             platform.ShowMessageBox("Umbrella API Host: Fatal Error", "Failed to initialize console.");
             return false;
         }
 
-        Console.WriteLine("TEST!!!");
+        logger.Debug("Test");
 
         return true;
     }

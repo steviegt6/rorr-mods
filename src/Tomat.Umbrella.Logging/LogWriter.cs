@@ -33,7 +33,7 @@ public abstract class StringLogWriter : LogWriter {
         sb.Append(entry.Timestamp.ToString("u"));
 
         if (entry.Source is not null)
-            sb.Append(" by\"" + entry.Source + '\"');
+            sb.Append(" by \"" + entry.Source + '\"');
 
         sb.Append(": ");
         sb.Append(entry.Message);

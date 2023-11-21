@@ -13,4 +13,8 @@
         <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta" PrivateAssets="all"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Tomat.Umbrella.Logging\Tomat.Umbrella.Logging.csproj"/>
+    </ItemGroup>
+
 </Project>

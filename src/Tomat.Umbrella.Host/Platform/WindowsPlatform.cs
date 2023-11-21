@@ -5,10 +5,11 @@ using Windows.Win32;
 using Windows.Win32.System.Console;
 using Windows.Win32.UI.WindowsAndMessaging;
 using Microsoft.Win32.SafeHandles;
+using Tomat.Umbrella.Host.Logging;
 
 namespace Tomat.Umbrella.Host.Platform;
 
-public class WindowsPlatform : IPlatform {
+internal class WindowsPlatform : IPlatform {
     [SupportedOSPlatform("windows5.0")]
     public void ShowMessageBox(string title, string message) {
         PInvoke.MessageBox(default, title, message, MESSAGEBOX_STYLE.MB_OK);
@@ -17,14 +18,15 @@ public class WindowsPlatform : IPlatform {
     [SupportedOSPlatform("windows5.1.2600")]
     public bool InitializeConsole() {
         PInvoke.AllocConsole();
-        
-        Console.SetIn(new StreamReader("CONIN$"));
-        Console.SetOut(new StreamWriter("CONOUT$") {
+
+        var reader = new StreamReader("CONIN$");
+        var writer = new StreamWriter("CONOUT$") {
             AutoFlush = true,
-        });
-        Console.SetError(new StreamWriter("CONOUT$") {
-            AutoFlush = true,
-        });
+        };
+
+        Console.SetIn(reader);
+        Console.SetOut(writer);
+        Console.SetError(writer);
 
         const string os = "Windows";
         var arch = Environment.Is64BitProcess ? "x64" : "x86";
