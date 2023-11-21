@@ -1,0 +1,7 @@
+{
+    "name": "AuriePack",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/steviegt6/rorr-mods",
+    "description": "Bundled Aurie and YYTK files for native GameMaker modding.",
+    "dependencies": [ ]
+}
