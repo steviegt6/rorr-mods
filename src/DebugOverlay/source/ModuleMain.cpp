@@ -1,58 +1,42 @@
-#include <YYToolkit/shared.hpp>
+#include "../../AurieCommon/common.hpp"
 
-using namespace Aurie;
-using namespace YYTK;
+SET_NAME(DebugOverlay)
+SET_VERSION(1.0.1)
 
-static YYTKInterface* g_ModuleInterface = nullptr;
-
-void code_event_callback_run_show_debug_overlay(FWCodeEvent& ctx)
+CODE_EVENT_CALLBACK(code_event_callback_run_show_debug_overlay)
 {
-	UNREFERENCED_PARAMETER(ctx);
-
-	static bool ran = false;
-
-	if (ran)
-	{
-		return;
-	}
-
-	g_ModuleInterface->CallBuiltin("show_debug_overlay", { RValue(true), RValue(false), RValue(1.0), RValue(0.8) });
+    UNREFERENCED_PARAMETER(ctx);
+    CALL_BUILTIN("show_debug_overlay", RValue(true), RValue(false), RValue(1.0), RValue(0.8));
+    REMOVE_CALLBACK(code_event_callback_run_show_debug_overlay);
 }
 
-EXPORTED AurieStatus ModuleInitialize(
-	IN AurieModule* Module,
-	IN const fs::path& ModulePath
-)
+MODULE_INITIALIZE
 {
-	UNREFERENCED_PARAMETER(ModulePath);
+    UNREFERENCED_PARAMETER(ModulePath);
+    SET_MODULE(Module);
 
-	AurieStatus last_status = AURIE_SUCCESS;
+    DEFINE_STATUS(status);
+    INITIALIZE_MODULE_INTERFACE(status)
+    {
+        return AURIE_MODULE_DEPENDENCY_NOT_RESOLVED;
+    }
 
-	last_status = ObGetInterface("YYTK_Main", (AurieInterfaceBase*&)g_ModuleInterface);
+    PRINT(CM_GRAY, "Successfully resolved YYTK interface.");
 
-	if (!AurieSuccess(last_status))
-	{
-		return AURIE_MODULE_DEPENDENCY_NOT_RESOLVED;
-	}
+    status = CREATE_CALLBACK(EVENT_OBJECT_CALL, code_event_callback_run_show_debug_overlay, 0);
+    if (AURIE_FAILURE(status))
+    {
+        PRINT(CM_LIGHTRED, "Failed to create callback for show_debug_overlay.");
+    }
 
-	g_ModuleInterface->Print(CM_GRAY, "[DebugOverlay] Successfully resolved YYTK interface.");
-
-	last_status = g_ModuleInterface->CreateCallback(Module, EVENT_OBJECT_CALL, code_event_callback_run_show_debug_overlay, 0);
-
-	if (!AurieSuccess(last_status))
-	{
-		g_ModuleInterface->Print(CM_LIGHTRED, "[DebugOverlay] Failed to create callback for show_debug_overlay.");
-	}
-
-	return AURIE_SUCCESS;
+    PRINT(CM_GRAY, "Successfully initialized; version %s.", VERSION);
+    return AURIE_SUCCESS;
 }
 
-EXPORTED AurieStatus ModuleUnload(
-	IN AurieModule* Module,
-	IN const fs::path& ModulePath
-)
+// TODO: Hide the overlay again if this mod is what enabled it?
+MODULE_UNLOAD
 {
-	// TODO: Hide the overlay again if this mod is what enabled it?
-
-	return AURIE_SUCCESS;
+    UNREFERENCED_PARAMETER(ModulePath);
+    UNREFERENCED_PARAMETER(Module);
+    return AURIE_SUCCESS;
 }
