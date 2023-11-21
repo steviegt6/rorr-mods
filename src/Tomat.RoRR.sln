@@ -19,9 +19,9 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Risk of Rain Returns", "C:\
 		IORedirection = Auto
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomat.Umbrella.Host", "Tomat.Umbrella.Host\Tomat.Umbrella.Host.vcxproj", "{26AD83DD-135F-46F2-9570-E4EB2352D2D5}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DebugOverlay", "DebugOverlay\DebugOverlay.vcxproj", "{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomat.Umbrella.Logging", "Tomat.Umbrella.Logging\Tomat.Umbrella.Logging.csproj", "{DA59B4E3-C426-4F8B-83CC-09472013EC11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,18 +51,6 @@ Global
 		{B1A022B8-D93C-422F-821C-EB1E202B9E66}.Release|Any CPU.ActiveCfg = Release|x64
 		{B1A022B8-D93C-422F-821C-EB1E202B9E66}.Release|x64.ActiveCfg = Release|x64
 		{B1A022B8-D93C-422F-821C-EB1E202B9E66}.Release|x86.ActiveCfg = Release|x64
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Debug|Any CPU.Build.0 = Debug|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Debug|x64.ActiveCfg = Debug|x64
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Debug|x64.Build.0 = Debug|x64
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Debug|x86.ActiveCfg = Debug|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Debug|x86.Build.0 = Debug|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Release|Any CPU.ActiveCfg = Release|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Release|Any CPU.Build.0 = Release|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Release|x64.ActiveCfg = Release|x64
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Release|x64.Build.0 = Release|x64
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Release|x86.ActiveCfg = Release|Win32
-		{26AD83DD-135F-46F2-9570-E4EB2352D2D5}.Release|x86.Build.0 = Release|Win32
 		{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}.Debug|Any CPU.Build.0 = Debug|x64
 		{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}.Debug|x64.ActiveCfg = Debug|x64
@@ -75,6 +63,18 @@ Global
 		{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}.Release|x64.Build.0 = Release|x64
 		{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}.Release|x86.ActiveCfg = Release|Win32
 		{D928E8DD-A79A-4C4D-AEA2-A73D65FB705D}.Release|x86.Build.0 = Release|Win32
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Debug|x64.Build.0 = Debug|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Debug|x86.Build.0 = Debug|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Release|x64.ActiveCfg = Release|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Release|x64.Build.0 = Release|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Release|x86.ActiveCfg = Release|Any CPU
+		{DA59B4E3-C426-4F8B-83CC-09472013EC11}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
