@@ -15,6 +15,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Tomat.Umbrella.Logging\Tomat.Umbrella.Logging.csproj"/>
+        <ProjectReference Include="..\Tomat.Umbrella.Paths\Tomat.Umbrella.Paths.csproj"/>
     </ItemGroup>
 
 </Project>

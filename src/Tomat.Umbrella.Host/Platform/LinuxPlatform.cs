@@ -1,11 +1,13 @@
-﻿namespace Tomat.Umbrella.Host.Platform;
+﻿using System;
+
+namespace Tomat.Umbrella.Host.Platform;
 
 internal class LinuxPlatform : IPlatform {
     public void ShowMessageBox(string title, string message) {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public bool InitializeConsole() {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

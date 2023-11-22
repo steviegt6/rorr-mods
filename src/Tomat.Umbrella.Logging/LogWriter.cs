@@ -56,7 +56,7 @@ public sealed class ConsoleLogWriter : StringLogWriter {
 public sealed class FileLogWriter : StringLogWriter {
     private readonly StreamWriter writer;
 
-    public FileLogWriter(string path, bool shared = true) {
+    public FileLogWriter(string path, bool shared) {
         try {
             if (Directory.Exists(path))
                 throw new FileNotFoundException("The path provided is a directory.", path);
@@ -64,7 +64,7 @@ public sealed class FileLogWriter : StringLogWriter {
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
             // Specifically allow ReadWrite so different contexts can write to the same file.
-            writer = new StreamWriter(File.Open(path, FileMode.Create, FileAccess.Write, shared ? FileShare.ReadWrite : FileShare.Read));
+            writer = new StreamWriter(File.Open(path, FileMode.OpenOrCreate, FileAccess.Write, shared ? FileShare.ReadWrite : FileShare.Read));
             writer.AutoFlush = true;
         }
         catch (Exception e) {

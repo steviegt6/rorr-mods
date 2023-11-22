@@ -1,11 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Runtime.Versioning;
 using Windows.Win32;
 using Windows.Win32.System.Console;
 using Windows.Win32.UI.WindowsAndMessaging;
 using Microsoft.Win32.SafeHandles;
-using Tomat.Umbrella.Host.Logging;
 
 namespace Tomat.Umbrella.Host.Platform;
 
@@ -19,14 +17,9 @@ internal class WindowsPlatform : IPlatform {
     public bool InitializeConsole() {
         PInvoke.AllocConsole();
 
-        var reader = new StreamReader("CONIN$");
-        var writer = new StreamWriter("CONOUT$") {
-            AutoFlush = true,
-        };
-
-        Console.SetIn(reader);
-        Console.SetOut(writer);
-        Console.SetError(writer);
+        // Console.SetIn(input());
+        // Console.SetOut(output());
+        // Console.SetError(error());
 
         const string os = "Windows";
         var arch = Environment.Is64BitProcess ? "x64" : "x86";

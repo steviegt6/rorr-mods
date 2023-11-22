@@ -1,8 +1,8 @@
-﻿using System.IO;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Tomat.Umbrella.Host.Platform;
 using Tomat.Umbrella.Logging;
+using Tomat.Umbrella.Paths;
 
 namespace Tomat.Umbrella.Host;
 
@@ -15,22 +15,11 @@ internal static unsafe class Program {
 
         var platform = IPlatform.MakePlatform();
 
-        var latestLogName = "latest.log";
-        var counter = 0;
+        var latestLogPath = PathHelper.GetLatestLogPath();
+        var currentLogPath = PathHelper.GetLogPathForNow();
 
-        while (File.Exists(latestLogName)) {
-            try {
-                File.Delete(latestLogName);
-            }
-            catch (IOException) {
-                latestLogName = $"latest.{++counter}.log";
-            }
-        }
-
-        latestLogName = Path.GetFullPath(latestLogName);
-
-        var writer = LogWriter.FromMany(new ILogWriter[] { new ConsoleLogWriter(), new FileLogWriter(latestLogName) });
-        var logger = new Logger("Tomat.Umbrella.Host", writer);
+        var logWriter = LogWriter.FromMany(new ILogWriter[] { new ConsoleLogWriter(), new FileLogWriter(latestLogPath, true), new FileLogWriter(currentLogPath, true) });
+        var logger = new Logger("Tomat.Umbrella.Host", logWriter);
 
         if (!platform.InitializeConsole()) {
             platform.ShowMessageBox("Umbrella API Host: Fatal Error", "Failed to initialize console.");
