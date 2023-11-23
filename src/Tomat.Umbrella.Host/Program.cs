@@ -35,6 +35,11 @@ internal static unsafe class Program {
         logger.Info("        - https://patreon.com/tomatophile");
         logger.Info("        - https://ko-fi.com/tomatophile");
 
+        var steamInitialized = platform.InitializeSteam(logger);
+
+        if (!steamInitialized)
+            logger.Warn("Either the Steam API failed to initialize or the game is not running through Steam. A workaround for this will be attempted.");
+
         return true;
     }
 

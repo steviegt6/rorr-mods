@@ -28,7 +28,7 @@ public abstract class LogWriter : ILogWriter {
 public abstract class StringLogWriter : LogWriter {
     public override void Write(ILogEntry entry) {
         var sb = new StringBuilder();
-        sb.Append($"[{entry.Level.Name}]".PadLeft(5));
+        sb.Append($"[{entry.Level.Name}]".PadLeft(7));
         sb.Append(" [");
         sb.Append(entry.Timestamp.ToString("H:mm:ss"));
         sb.Append(']');

@@ -5,3 +5,5 @@ GetStdHandle
 GetConsoleMode
 SetConsoleMode
 CreateFile
+LoadLibrary
+GetProcAddress
