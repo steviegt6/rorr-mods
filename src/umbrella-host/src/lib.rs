@@ -1,44 +1,44 @@
-use windows::Win32::Foundation::{BOOL, FALSE, HANDLE, HMODULE, TRUE};
+use platforms::{initialize_console, set_console_title};
+
 mod platforms;
 
-// Windows DLL entrypoint.
-#[cfg(target_os = "windows")]
-#[no_mangle]
-pub extern "system" fn DllMain(
-    _hinst_dll: HMODULE,
-    fdw_reason: u32,
-    _lpv_reserved: *mut std::ffi::c_void,
-) -> BOOL {
-    if fdw_reason == 1 {
-        platforms::display_message_box("Hello from Rust", "Hello from Rust");
-    }
+fn shared_main() {
+    initialize_console();
 
-    return TRUE;
-}
+    #[cfg(target_os = "windows")]
+    let os = "Windows";
 
-// Proxy target: dbgcore.dll
-#[cfg(target_os = "windows")]
-#[no_mangle]
-pub extern "C" fn MiniDumpReadDumpStream(
-    _: *mut std::ffi::c_void,
-    _: u64,
-    _: *mut std::ffi::c_void,
-    _: *mut std::ffi::c_void,
-    _: *mut std::ffi::c_void,
-) -> BOOL {
-    return FALSE;
-}
+    #[cfg(target_os = "macos")]
+    let os = "macOS";
 
-#[cfg(target_os = "windows")]
-#[no_mangle]
-pub extern "C" fn MiniDumpWriteDump(
-    _: HANDLE,
-    _: u32,
-    _: HANDLE,
-    _: u32,
-    _: *mut std::ffi::c_void,
-    _: *mut std::ffi::c_void,
-    _: *mut std::ffi::c_void,
-) -> BOOL {
-    return FALSE;
+    #[cfg(target_os = "linux")]
+    let os = "Linux";
+
+    #[cfg(target_arch = "x86")]
+    let arch = "x86";
+
+    #[cfg(target_arch = "x86_64")]
+    let arch = "x86_64";
+
+    #[cfg(target_arch = "arm")]
+    let arch = "arm";
+
+    #[cfg(target_arch = "aarch64")]
+    let arch = "aarch64";
+
+    #[cfg(debug_assertions)]
+    let build_type = "DEBUG";
+
+    #[cfg(not(debug_assertions))]
+    let build_type = "RELEASE";
+
+    set_console_title(&format!(
+        "Tomat.Umbrella.Host v{} - {} {} ({})",
+        env!("CARGO_PKG_VERSION"),
+        os,
+        arch,
+        build_type
+    ));
+
+    println!("{}", "test");
 }

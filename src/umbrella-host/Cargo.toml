@@ -2,7 +2,7 @@
 name = "umbrella-host"
 authors = ["tomat"]
 description = "Umbrella API host and DLL hijacker"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 
 [lib]
@@ -11,9 +11,13 @@ crate-type = ["cdylib"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+libc = "0.2.150"
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.52.0", features = [
+    "Win32_Security",
     "Win32_Foundation",
+    "Win32_System_Console",
+    "Win32_System_Threading",
     "Win32_UI_WindowsAndMessaging",
 ] }
