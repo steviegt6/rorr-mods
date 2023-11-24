@@ -8,5 +8,7 @@ fn main() {
 
 #[cfg(target_os = "windows")]
 fn for_platform(build: &mut cc::Build) {
-    build.file("src/platforms/windows/evil.c");
+    build
+        .file("src/platforms/windows/evil.c")
+        .file("src/platforms/windows/suspended.c");
 }

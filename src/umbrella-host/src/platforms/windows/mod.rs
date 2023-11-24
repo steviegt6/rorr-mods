@@ -1,4 +1,5 @@
 mod evil;
+mod suspended;
 
 use windows::Win32::Foundation::{CloseHandle, BOOL, FALSE, HANDLE, HMODULE, TRUE};
 use windows::Win32::System::Console::{
@@ -38,6 +39,14 @@ pub fn initialize_console() {
 pub fn set_console_title(title: &str) {
     unsafe {
         _ = SetConsoleTitleA(PCSTR(format!("{}\0", title).as_ptr()));
+    }
+}
+
+pub fn is_suspended_process() -> bool {
+    unsafe {
+        let mut suspended = false;
+        let success = suspended::is_process_suspended(&mut suspended);
+        return !success || suspended;
     }
 }
 
