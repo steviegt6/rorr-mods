@@ -2,7 +2,7 @@ use platforms::{initialize_console, set_console_title};
 
 mod platforms;
 
-fn shared_main() {
+fn shared_main(_p: *mut ::core::ffi::c_void) {
     initialize_console();
 
     #[cfg(target_os = "windows")]

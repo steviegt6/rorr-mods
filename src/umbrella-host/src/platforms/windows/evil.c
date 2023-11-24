@@ -7,23 +7,3 @@ void initialize_console(void)
     (void)freopen_s(&stream, "CONOUT$", "w", stdout);
     (void)freopen_s(&stream, "CONOUT$", "w", stderr);
 }
-
-/*FILE *get_stdin()
-{
-    return stdin;
-}
-
-FILE *get_stdout()
-{
-    return stdout;
-}
-
-FILE *get_stderr()
-{
-    return stderr;
-}
-
-errno_t freopen_s(FILE **stream, const char *filename, const char *mode, FILE *oldstream)
-{
-    return freopen_s(stream, filename, mode, oldstream);
-}*/

@@ -42,7 +42,7 @@ pub fn set_console_title(title: &str) {
 }
 
 unsafe extern "system" fn thread_main(p: *mut ::core::ffi::c_void) -> u32 {
-    crate::shared_main();
+    crate::shared_main(p);
     return 0;
 }
 
