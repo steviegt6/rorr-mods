@@ -1,12 +1,11 @@
 mod evil;
 mod suspended;
 
-use windows::Win32::Foundation::{CloseHandle, BOOL, FALSE, HANDLE, HMODULE, TRUE};
+use windows::Win32::Foundation::{BOOL, FALSE, HANDLE, HMODULE, TRUE};
 use windows::Win32::System::Console::{
     AllocConsole, GetConsoleMode, GetStdHandle, SetConsoleMode, SetConsoleTitleA, CONSOLE_MODE,
     ENABLE_EXTENDED_FLAGS, ENABLE_QUICK_EDIT_MODE, STD_INPUT_HANDLE,
 };
-use windows::Win32::System::Threading::CreateThread;
 use windows::{core::PCSTR, Win32::UI::WindowsAndMessaging::MessageBoxA};
 
 use self::suspended::SuspendAllThreadsResult;
@@ -49,10 +48,9 @@ pub fn set_console_title(title: &str) {
     }
 }
 
-unsafe extern "system" fn thread_main(p: *mut ::core::ffi::c_void) -> u32 {
-    let data = &*(p as *const WindowsData);
+unsafe extern "system" fn thread_main(data: &WindowsData) -> u32 {
+    suspended::suspend_this_thread(data.suspension_result.main_thread);
     crate::early_main();
-    suspended::wait_for_thread_to_suspend(data.suspension_result.main_thread);
     crate::shared_main();
     return 0;
 }
@@ -69,29 +67,14 @@ pub unsafe extern "system" fn DllMain(
     }
 
     let result = suspended::suspend_all_threads();
-    let thread_id = result.main_thread;
     let data = WindowsData {
         instance: hinst_dll,
         suspension_result: result,
     };
 
-    /*CloseHandle(
-        CreateThread(
-            None,
-            0,
-            Some(thread_main),
-            Some(std::mem::transmute(&data)),
-            windows::Win32::System::Threading::THREAD_CREATION_FLAGS(0),
-            None,
-        )
-        .expect("Failed to start thread"),
-    )
-    .expect("Failed to close thread handle");*/
     std::thread::spawn(move || {
-        thread_main(std::mem::transmute(&data));
+        thread_main(&data);
     });
-    // std::thread::sleep(std::time::Duration::from_millis(5000));
-    // suspended::suspend_this_thread(thread_id);
     return TRUE;
 }
 
