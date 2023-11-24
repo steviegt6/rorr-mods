@@ -9,6 +9,13 @@ use windows::Win32::System::Console::{
 use windows::Win32::System::Threading::CreateThread;
 use windows::{core::PCSTR, Win32::UI::WindowsAndMessaging::MessageBoxA};
 
+use self::suspended::SuspendAllThreadsResult;
+
+struct WindowsData {
+    instance: HMODULE,
+    suspension_result: SuspendAllThreadsResult,
+}
+
 pub fn display_message_box(title: &str, message: &str) {
     unsafe {
         MessageBoxA(
@@ -42,33 +49,11 @@ pub fn set_console_title(title: &str) {
     }
 }
 
-pub fn is_suspended_process() -> bool {
-    unsafe {
-        let mut suspended = false;
-        let success = suspended::is_process_suspended(&mut suspended);
-        display_message_box(
-            "suspended?",
-            &format!("suspended: {} success: {}", suspended, success),
-        );
-        return !success || suspended;
-    }
-}
-
-pub fn restart_process_as_suspended(p: *mut ::core::ffi::c_void) {
-    unsafe {
-        let success =
-            suspended::restart_process(suspended::get_current_dll_path(HMODULE(p as isize)));
-        if !success {
-            display_message_box(
-                "Error",
-                "Failed to restart process as suspended. Please report this.",
-            );
-        }
-    }
-}
-
 unsafe extern "system" fn thread_main(p: *mut ::core::ffi::c_void) -> u32 {
-    crate::shared_main(p);
+    let data = &*(p as *const WindowsData);
+    crate::early_main();
+    suspended::wait_for_thread_to_suspend(data.suspension_result.main_thread);
+    crate::shared_main();
     return 0;
 }
 
@@ -83,18 +68,30 @@ pub unsafe extern "system" fn DllMain(
         return TRUE;
     }
 
-    CloseHandle(
+    let result = suspended::suspend_all_threads();
+    let thread_id = result.main_thread;
+    let data = WindowsData {
+        instance: hinst_dll,
+        suspension_result: result,
+    };
+
+    /*CloseHandle(
         CreateThread(
             None,
             0,
             Some(thread_main),
-            Some(std::mem::transmute(hinst_dll)),
+            Some(std::mem::transmute(&data)),
             windows::Win32::System::Threading::THREAD_CREATION_FLAGS(0),
             None,
         )
         .expect("Failed to start thread"),
     )
-    .expect("Failed to close thread handle");
+    .expect("Failed to close thread handle");*/
+    std::thread::spawn(move || {
+        thread_main(std::mem::transmute(&data));
+    });
+    // std::thread::sleep(std::time::Duration::from_millis(5000));
+    // suspended::suspend_this_thread(thread_id);
     return TRUE;
 }
 
