@@ -46,7 +46,24 @@ pub fn is_suspended_process() -> bool {
     unsafe {
         let mut suspended = false;
         let success = suspended::is_process_suspended(&mut suspended);
+        display_message_box(
+            "suspended?",
+            &format!("suspended: {} success: {}", suspended, success),
+        );
         return !success || suspended;
+    }
+}
+
+pub fn restart_process_as_suspended(p: *mut ::core::ffi::c_void) {
+    unsafe {
+        let success =
+            suspended::restart_process(suspended::get_current_dll_path(HMODULE(p as isize)));
+        if !success {
+            display_message_box(
+                "Error",
+                "Failed to restart process as suspended. Please report this.",
+            );
+        }
     }
 }
 

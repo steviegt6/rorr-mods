@@ -52,3 +52,14 @@ pub fn is_process_suspended() -> bool {
     #[cfg(target_os = "linux")]
     return linux::is_suspended_process();
 }
+
+pub fn restart_process_as_suspended(p: *mut ::core::ffi::c_void) {
+    #[cfg(target_os = "windows")]
+    windows::restart_process_as_suspended(p);
+
+    #[cfg(target_os = "macos")]
+    macos::restart_process_as_suspended(p);
+
+    #[cfg(target_os = "linux")]
+    linux::restart_process_as_suspended(p);
+}

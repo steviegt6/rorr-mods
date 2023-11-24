@@ -286,3 +286,47 @@ NTSTATUS resume_process(HANDLE process_handle)
 
     return nt_resume_process(process_handle);
 }
+
+BOOL restart_process(char *dll_to_inject)
+{
+    STARTUPINFO startup_info = {0};
+    PROCESS_INFORMATION process_information = {0};
+    startup_info.cb = sizeof(startup_info);
+
+    if (!CreateProcessW(NULL, GetCommandLineW(), NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &startup_info, &process_information))
+        return;
+
+    PVOID remote_memory = VirtualAllocEx(process_information.hProcess, NULL, strlen(dll_to_inject) + 1, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+
+    if (!remote_memory)
+    {
+        return FALSE;
+    }
+
+    if (!WriteProcessMemory(process_information.hProcess, remote_memory, dll_to_inject, strlen(dll_to_inject) + 1, NULL))
+    {
+        return FALSE;
+    }
+
+    HANDLE remote_thread = CreateRemoteThread(process_information.hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA, remote_memory, 0, NULL);
+
+    if (!remote_thread)
+    {
+        return FALSE;
+    }
+
+    WaitForSingleObject(remote_thread, INFINITE);
+    VirtualFreeEx(process_information.hProcess, remote_memory, 0, MEM_RELEASE);
+
+    // ResumeThread(process_information.hThread);
+    CloseHandle(process_information.hThread);
+    CloseHandle(process_information.hProcess);
+    ExitProcess(0);
+}
+
+char *get_current_dll_path(HMODULE instance)
+{
+    TCHAR path[MAX_PATH];
+    GetModuleFileName(instance, path, MAX_PATH);
+    return path;
+}

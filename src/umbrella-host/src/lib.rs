@@ -1,8 +1,10 @@
 use platforms::{initialize_console, set_console_title};
 
+use crate::platforms::display_message_box;
+
 mod platforms;
 
-fn shared_main(_p: *mut ::core::ffi::c_void) {
+fn shared_main(p: *mut ::core::ffi::c_void) {
     initialize_console();
 
     #[cfg(target_os = "windows")]
@@ -40,5 +42,13 @@ fn shared_main(_p: *mut ::core::ffi::c_void) {
         build_type
     ));
 
-    println!("proc suspended: {}", platforms::is_process_suspended());
+    let suspended = platforms::is_process_suspended();
+    println!("Launched as suspended process: {}", suspended);
+
+    if !suspended {
+        platforms::restart_process_as_suspended(p);
+        return;
+    }
+
+    display_message_box("hi", "yay it's suspended")
 }
