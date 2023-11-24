@@ -4,6 +4,7 @@
 
 bin/
 obj/
+target/
 
 *.user
 *.log
