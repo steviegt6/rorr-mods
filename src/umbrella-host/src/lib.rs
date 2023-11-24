@@ -61,4 +61,13 @@ fn shared_main() {
     println!("    - https://github.com/steviegt6/rorr-mods (the repo in which The Umbrella API resides),");
     println!("    - https://store.steampowered.com/app/1337520/Risk_of_Rain_Returns/,");
     println!("    - and repositories under the https://github.com/AurieFramework/ organization.");
+    println!("");
+    init_dotnet();
+}
+
+fn init_dotnet() {
+    println!("Initializing .NET runtime...");
+
+    // TODO: Do something with this; also set up .NET.
+    _ = netcorehost::nethost::load_hostfxr().expect("Failed to load hostfxr");
 }

@@ -5,6 +5,7 @@ pub struct SuspendAllThreadsResult {
 }
 
 extern "C" {
+    pub fn initialize_console();
     pub fn suspend_all_threads() -> SuspendAllThreadsResult;
     pub fn suspend_this_thread(thread_id: u32);
 }

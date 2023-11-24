@@ -1,5 +1,4 @@
-mod evil;
-mod suspended;
+mod api_helper;
 
 use windows::Win32::Foundation::{BOOL, FALSE, HANDLE, HMODULE, TRUE};
 use windows::Win32::System::Console::{
@@ -8,11 +7,9 @@ use windows::Win32::System::Console::{
 };
 use windows::{core::PCSTR, Win32::UI::WindowsAndMessaging::MessageBoxA};
 
-use self::suspended::SuspendAllThreadsResult;
-
 struct WindowsData {
     instance: HMODULE,
-    suspension_result: SuspendAllThreadsResult,
+    suspension_result: api_helper::SuspendAllThreadsResult,
 }
 
 pub fn display_message_box(title: &str, message: &str) {
@@ -28,28 +25,32 @@ pub fn display_message_box(title: &str, message: &str) {
 
 pub fn initialize_console() {
     unsafe {
+        // We can ignore errors here; only fails if a console is already
+        // allocated. In such cases, we don't care.
         _ = AllocConsole();
 
-        evil::initialize_console();
+        api_helper::initialize_console();
 
         let input = GetStdHandle(STD_INPUT_HANDLE).expect("Failed to get input handle");
         let mut mode: CONSOLE_MODE = std::mem::zeroed();
-        _ = GetConsoleMode(input, &mut mode);
-        _ = SetConsoleMode(
+        GetConsoleMode(input, &mut mode).expect("Failed to get console mode");
+        SetConsoleMode(
             input,
             ENABLE_EXTENDED_FLAGS | (mode & !ENABLE_QUICK_EDIT_MODE),
-        );
+        )
+        .expect("Failed to set console mode");
     };
 }
 
 pub fn set_console_title(title: &str) {
     unsafe {
-        _ = SetConsoleTitleA(PCSTR(format!("{}\0", title).as_ptr()));
+        SetConsoleTitleA(PCSTR(format!("{}\0", title).as_ptr()))
+            .expect("Failed to set console title");
     }
 }
 
 unsafe extern "system" fn thread_main(data: &WindowsData) -> u32 {
-    suspended::suspend_this_thread(data.suspension_result.main_thread);
+    api_helper::suspend_this_thread(data.suspension_result.main_thread);
     crate::shared_main();
     return 0;
 }
@@ -65,7 +66,7 @@ pub unsafe extern "system" fn DllMain(
         return TRUE;
     }
 
-    let result = suspended::suspend_all_threads();
+    let result = api_helper::suspend_all_threads();
     let data = WindowsData {
         instance: hinst_dll,
         suspension_result: result,

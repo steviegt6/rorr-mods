@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <windows.h>
 #include <TlHelp32.h>
 
@@ -6,6 +7,18 @@ typedef struct
     BOOL success;
     DWORD main_thread;
 } suspend_all_threads_result;
+
+void initialize_console(void);
+suspend_all_threads_result suspend_all_threads(void);
+void suspend_this_thread(DWORD thread_id);
+
+void initialize_console(void)
+{
+    FILE *stream;
+    (void)freopen_s(&stream, "CONIN$", "r", stdin);
+    (void)freopen_s(&stream, "CONOUT$", "w", stdout);
+    (void)freopen_s(&stream, "CONOUT$", "w", stderr);
+}
 
 suspend_all_threads_result suspend_all_threads(void)
 {

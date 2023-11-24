@@ -14,6 +14,7 @@ cc = "1.0"
 
 [dependencies]
 libc = "0.2"
+netcorehost = { version = "0.15", features = ["latest"] }
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.52.0", features = [
