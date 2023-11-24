@@ -52,16 +52,3 @@ void suspend_this_thread(DWORD thread_id)
         CloseHandle(thread);
     }
 }
-
-void wait_for_thread_to_suspend(DWORD thread_id)
-{
-    HANDLE thread = OpenThread(THREAD_SUSPEND_RESUME, FALSE, thread_id);
-    if (thread != NULL)
-    {
-        while (SuspendThread(thread) >= 0)
-        {
-            Sleep(1);
-        }
-        CloseHandle(thread);
-    }
-}

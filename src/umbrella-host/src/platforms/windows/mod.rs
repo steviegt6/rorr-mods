@@ -50,7 +50,6 @@ pub fn set_console_title(title: &str) {
 
 unsafe extern "system" fn thread_main(data: &WindowsData) -> u32 {
     suspended::suspend_this_thread(data.suspension_result.main_thread);
-    crate::early_main();
     crate::shared_main();
     return 0;
 }

@@ -2,7 +2,7 @@ use platforms::{initialize_console, set_console_title};
 
 mod platforms;
 
-fn early_main() {
+fn shared_main() {
     initialize_console();
 
     #[cfg(target_os = "windows")]
@@ -39,10 +39,4 @@ fn early_main() {
         arch,
         build_type
     ));
-
-    println!("Waiting for main thread to suspend...");
-}
-
-fn shared_main() {
-    println!("Main thread suspended!");
 }
