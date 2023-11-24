@@ -4,14 +4,16 @@ authors = ["tomat"]
 description = "Umbrella API host and DLL hijacker"
 version = "1.0.0"
 edition = "2021"
+build = "build.rs"
 
 [lib]
 crate-type = ["cdylib"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[build-dependencies]
+cc = "1.0"
 
 [dependencies]
-libc = "0.2.150"
+libc = "0.2"
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.52.0", features = [

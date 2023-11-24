@@ -1,7 +1,5 @@
-use std::io::{stderr, stdin, stdout};
-use std::os::windows::io::{AsHandle, AsRawHandle};
+mod evil;
 
-use libc::{c_char, freopen, FILE};
 use windows::Win32::Foundation::{CloseHandle, BOOL, FALSE, HANDLE, HMODULE, TRUE};
 use windows::Win32::System::Console::{
     AllocConsole, GetConsoleMode, GetStdHandle, SetConsoleMode, SetConsoleTitleA, CONSOLE_MODE,
@@ -25,40 +23,8 @@ pub fn initialize_console() {
     unsafe {
         _ = AllocConsole();
 
-        let conin = "CONIN$\0".as_ptr() as *const c_char;
-        let conout = "CONOUT$\0".as_ptr() as *const c_char;
+        evil::initialize_console();
 
-        let r = "r\0".as_ptr() as *const c_char;
-        let w = "w\0".as_ptr() as *const c_char;
-
-        let stdin = stdin();
-        let stdout = stdout();
-        let stderr = stderr();
-
-        let stdin_handle = stdin.as_handle();
-        let stdout_handle = stdout.as_handle();
-        let stderr_handle = stderr.as_handle();
-
-        let stdin_fd = libc::open_osfhandle(
-            stdin_handle.as_raw_handle() as libc::intptr_t,
-            libc::O_RDONLY,
-        );
-        let stdout_fd = libc::open_osfhandle(
-            stdout_handle.as_raw_handle() as libc::intptr_t,
-            libc::O_WRONLY,
-        );
-        let stderr_fd = libc::open_osfhandle(
-            stderr_handle.as_raw_handle() as libc::intptr_t,
-            libc::O_WRONLY,
-        );
-
-        freopen(conin, r, libc::fdopen(stdin_fd, r));
-        freopen(conout, w, libc::fdopen(stdout_fd, w));
-        freopen(conout, w, libc::fdopen(stderr_fd, w));
-
-        let input = GetStdHandle(STD_INPUT_HANDLE).expect("Failed to get input handle");
-        let mode: *mut CONSOLE_MODE = std::ptr::null_mut();
-        _ = GetConsoleMode(input, mode);
         let input = GetStdHandle(STD_INPUT_HANDLE).expect("Failed to get input handle");
         let mut mode: CONSOLE_MODE = std::mem::zeroed();
         _ = GetConsoleMode(input, &mut mode);
